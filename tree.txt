@@ -1,0 +1,28 @@
+ª   init.lua
+ª   tree.txt
+ª   
++---lua
+ª   +---henry
+ª       ª   plugins-setup.lua
+ª       ª   
+ª       +---core
+ª       ª       colorscheme.lua
+ª       ª       keymaps.lua
+ª       ª       options.lua
+ª       ª       
+ª       +---plugins
+ª           ª   comment.lua
+ª           ª   lualine.lua
+ª           ª   nvim-cmp.lua
+ª           ª   nvim-tree.lua
+ª           ª   telescope.lua
+ª           ª   
+ª           +---lsp
+ª                   lspconfig.lua
+ª                   lspsaga.lua
+ª                   mason.lua
+ª                   null-ls.lua
+ª                   
++---plugin
+        packer_compiled.lua
+
