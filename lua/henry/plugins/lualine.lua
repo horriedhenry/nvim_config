@@ -29,6 +29,15 @@ end
 --   },
 -- }
 
+-- For dracule theme
+-- require('lualine').setup {
+--   options = {
+--     -- ...
+--     theme = 'dracula-nvim'
+--     -- ...
+--   }
+-- }
+-- 
 -- configure lualine with modified theme (for nightfly theme)
 lualine.setup({
   options = {
@@ -39,13 +48,4 @@ lualine.setup({
     theme = "gruvbox"
   },
 })
-
--- For dracule theme
--- require('lualine').setup {
---   options = {
---     -- ...
---     theme = 'dracula-nvim'
---     -- ...
---   }
--- }
 
