@@ -41,8 +41,10 @@ end
 -- configure lualine with modified theme (for nightfly theme)
 lualine.setup({
   options = {
-        icons_enabled = "true",
-    -- theme = lualine_nightfly,
+      icons_enabled = "false",
+      section_separators = "",
+      component_separators = "|",
+      -- theme = lualine_nightfly,
         -- theme = "seoul256", -- for kanagawa theme
         -- theme = "rose-pine"
     theme = "gruvbox"
