@@ -33,23 +33,10 @@ return packer.startup(function(use)
     use("nvim-lua/plenary.nvim")
 
     --color themes
-    -- use("sonph/onehalf")
     use("rebelot/kanagawa.nvim")
-    -- use("bluz71/vim-nightfly-guicolors")
     use("Mofiqul/dracula.nvim")
-    --use("drewtempelmeyer/palenight.vim")
-    -- use("folke/tokyonight.nvim")
-    -- use("catppuccin/nvim")
     use("rose-pine/neovim")
-    --use("ayu-theme/ayu-vim") -- ayu
-    --use("arcticicestudio/nord-vim") --nord theme
-    --use("rakr/vim-one") -- one theme 
-    --use("mhartington/oceanic-next")
     use("morhetz/gruvbox") -- gruvbox
-    --use("ful1e5/onedark.nvim")
-    --use("cpea2506/one_monokai.nvim")
-    --use("tjdevries/colorbuddy.vim")
-    --use("tjdevries/gruvbuddy.nvim")
 
     --undo tree
     use("mbbill/undotree")
@@ -57,9 +44,6 @@ return packer.startup(function(use)
     -- ThePrimeagen 
     use("ThePrimeagen/vim-be-good")
     use("ThePrimeagen/harpoon")
-
-    -- session manager
-    -- use { 'echasnovski/mini.nvim', branch = 'stable' }
 
     -- Git
     use("tpope/vim-fugitive")
@@ -81,8 +65,6 @@ return packer.startup(function(use)
 
     -- status line
     use("nvim-lualine/lualine.nvim")
-    -- use("vim-airline/vim-airline")
-    -- use("vim-airline/vim-airline-themes")
 
     -- fuzzy finding w/ telescope
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
