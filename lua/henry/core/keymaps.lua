@@ -64,5 +64,8 @@ vim.keymap.set("n", "<leader>m", function()
     vim.lsp.buf.format()
 end)
 
+-- find replace
+vim.keymap.set("n", "<C-f>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+
 -- Experiment
 
