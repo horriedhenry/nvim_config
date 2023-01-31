@@ -15,6 +15,7 @@ telescope.setup({
   -- configure custom mappings
   defaults = {
     file_ignore_patterns = {
+        ".git"
     },
     mappings = {
       i = {
@@ -30,8 +31,8 @@ telescope.load_extension("fzf")
 
 local map = vim.keymap
 
-map.set("n", "<leader>f", "<cmd>Telescope git_files<cr>")
-map.set("n", "<C-p>", "<cmd>Telescope find_files<cr>")
+map.set("n", "<leader>f", "<cmd>Telescope find_files<cr>")
+-- map.set("n", "<C-p>", "<cmd>Telescope find_files<cr>")
 -- map.set("n", "<leader>g", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
 -- map.set("n", "<leader>c", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 map.set("n", "<leader>b", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
