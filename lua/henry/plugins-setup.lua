@@ -48,6 +48,9 @@ return packer.startup(function(use)
     -- Git
     use("tpope/vim-fugitive")
 
+    -- ZenMode
+    use("folke/zen-mode.nvim")
+
     -- tmux & split window navigation
     use("christoomey/vim-tmux-navigator")
     use("szw/vim-maximizer") --maximizes and restores current window
