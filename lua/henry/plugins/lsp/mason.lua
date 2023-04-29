@@ -1,9 +1,9 @@
 local servers = {
-	"sumneko_lua",
+	"lua_ls",
 	"pyright",
 	"jsonls",
 	"clangd",
-  "jdtls"
+    --"jdtls"
 }
 
 local settings = {
@@ -45,5 +45,5 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", conf_opts, opts)
 	end
 
-	lspconfig[server].setup(opts)
+	--lspconfig[server].setup()
 end
