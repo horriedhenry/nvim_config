@@ -11,6 +11,7 @@ require("henry.plugins.fugutive")
 require("henry.plugins.autopairs")
 require("henry.plugins.gitsigns")
 require("henry.plugins.zenmode")
+require("henry.plugins.lsp")
 require("henry.core.colorscheme")
 
 -- Enable transparent background
