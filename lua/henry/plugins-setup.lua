@@ -73,27 +73,6 @@ return packer.startup(function(use)
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
     use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
 
-	  -- cmp plugins
-	use("hrsh7th/nvim-cmp") -- The completion plugin
-	use("hrsh7th/cmp-buffer") -- buffer completions
-	use("hrsh7th/cmp-path") -- path completions
-	use("hrsh7th/cmp-cmdline") -- cmdline completions
-	use("saadparwaiz1/cmp_luasnip") -- snippet completions
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-nvim-lua")
-
-    -- temp
-    use("p00f/clangd_extensions.nvim")
-	  -- snippets
-	use("L3MON4D3/LuaSnip") --snippet engine
-	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
-
-	use "neovim/nvim-lspconfig" -- enable LSP
-	use "williamboman/mason.nvim" -- simple to use language server installer
-	use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
-	use 'jose-elias-alvarez/null-ls.nvim' -- LSP diagnostics and code actions
-
-
     -- treesitter configuration
     use({
         "nvim-treesitter/nvim-treesitter",

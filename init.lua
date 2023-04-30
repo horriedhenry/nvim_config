@@ -10,8 +10,6 @@ require("henry.plugins.treesitter")
 require("henry.plugins.fugutive")
 require("henry.plugins.autopairs")
 require("henry.plugins.gitsigns")
-require("henry.plugins.lsp")
-require("henry.plugins.cmp")
 require("henry.plugins.zenmode")
 require("henry.core.colorscheme")
 
