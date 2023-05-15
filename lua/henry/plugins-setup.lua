@@ -34,11 +34,7 @@ return packer.startup(function(use)
 
     --color themes
     use("rebelot/kanagawa.nvim")
-    use("RRethy/nvim-base16")
-    use("Mofiqul/dracula.nvim")
-    use("rose-pine/neovim")
     use("morhetz/gruvbox") -- gruvbox
-    use { "catppuccin/nvim", as = "catppuccin" }
 
     --undo tree
     use("mbbill/undotree")
