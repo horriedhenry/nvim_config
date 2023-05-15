@@ -7,7 +7,6 @@ lsp.ensure_installed({
     'lua_ls',
     'pyright',
     'jsonls',
-    'jdtls'
 })
 
 -- Fix Undefined global 'vim'
