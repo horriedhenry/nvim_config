@@ -34,6 +34,7 @@ return packer.startup(function(use)
 
     --color themes
     use("rebelot/kanagawa.nvim")
+    use("rose-pine/neovim")
     use("morhetz/gruvbox") -- gruvbox
 
     --undo tree

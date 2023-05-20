@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\shiva\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\ReplaceWithRegister",
     url = "https://github.com/vim-scripts/ReplaceWithRegister"
   },
+  catppuccin = {
+    loaded = true,
+    path = "C:\\Users\\shiva\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\catppuccin",
+    url = "https://github.com/catppuccin/catppuccin"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "C:\\Users\\shiva\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-buffer",
@@ -113,11 +118,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\shiva\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
-  },
-  ["dracula.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\shiva\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\dracula.nvim",
-    url = "https://github.com/Mofiqul/dracula.nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -225,6 +225,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\shiva\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\shiva\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   undotree = {
     loaded = true,
