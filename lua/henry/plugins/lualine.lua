@@ -7,7 +7,7 @@ end
 lualine.setup({
   options = {
       -- icons_enabled = "false",
-      section_separators = "",
+      section_separators = {left = "", right = "和 "},
       component_separators = { left = "和", right = "|" },
       -- component_separators = { left = "|", right = "|" },
       -- theme = "seoul256", -- for kanagawa theme
