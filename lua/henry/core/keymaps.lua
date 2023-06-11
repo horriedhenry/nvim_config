@@ -36,10 +36,6 @@ map.set("n", "<leader>S", "<cmd>so%<CR>")
 map.set("n", "<leader>q", ":q<CR>")
 map.set("n", "<leader>Q", ":q!<CR>")
 
---save
-map.set("n", "<leader>w", "<cmd>w<CR>")
-map.set("n", "<leader>W", "<cmd>wq<CR>")
-
 --manage tabs
 map.set("n", "<leader>to", "<cmd>tabnew<CR>") --open new tab
 map.set("n", "<leader>tx", "<cmd>tabclose<CR>") --close current tab
