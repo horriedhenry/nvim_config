@@ -35,7 +35,36 @@ require('rose-pine').setup({
 	}
 })
 
-local status, _ = pcall(vim.cmd, "colorscheme rose-pine")
+require("tokyonight").setup({
+  transparent = true, -- Enable this to disable setting the background color
+  terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+  styles = {
+    comments = { italic = false },
+    keywords = { italic = false },
+    functions = {},
+    variables = {},
+    -- Background styles. Can be "dark", "transparent" or "normal"
+    sidebars = "transparent", -- style for sidebars, see below
+    floats = "transparent", -- style for floating windows
+  },
+  -- sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+  sidebars = { "qf", "vista_kind", "terminal", "packer" },
+  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+  on_colors = function(colors)
+    colors.hint = colors.orange
+    colors.error = "#ff0000"
+end;
+  day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
+  hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
+  dim_inactive = false, -- dims inactive windows
+  lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
+
+  on_colors = function(colors) end,
+
+  on_highlights = function(highlights, colors) end,
+})
+
+local status, _ = pcall(vim.cmd, "colorscheme tokyonight")
 
 if not status then
     print("colorscheme not found!!")
