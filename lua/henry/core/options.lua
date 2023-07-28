@@ -10,6 +10,8 @@ opt.relativenumber=true
 opt.softtabstop=4
 opt.expandtab=true
 opt.autoindent=true
+opt.gdefault=true -- for renaming all occurances of a word in selected area.
+                  -- instead of setting all the time (:'<,'>s/word/words/g)
 
 opt.hlsearch=false
 opt.incsearch=true
