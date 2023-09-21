@@ -35,8 +35,8 @@ return packer.startup(function(use)
     --color themes
     use("rebelot/kanagawa.nvim")
     use("rose-pine/neovim")
-    use("morhetz/gruvbox") -- gruvbox
     use("folke/tokyonight.nvim")
+    use("catppuccin/nvim")
 
     --undo tree
     use("mbbill/undotree")
@@ -115,6 +115,16 @@ return packer.startup(function(use)
 
     use("jay-babu/mason-null-ls.nvim")
     use("jose-elias-alvarez/null-ls.nvim")
+    use {
+      'Exafunction/codeium.vim',
+      config = function ()
+        -- Change '<C-g>' here to any keycode you like.
+        vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+        vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+        vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+        vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+      end
+    }
 
     if packer_bootstrap then
         require("packer").sync()

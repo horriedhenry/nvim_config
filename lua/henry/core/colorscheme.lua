@@ -1,6 +1,6 @@
 require('rose-pine').setup({
 	disable_italics = true,
-	disable_background = true,
+	disable_background = false,
 	disable_float_background = true,
 	--- @usage string hex value or named color from rosepinetheme.com/palette
 	groups = {
@@ -36,8 +36,8 @@ require('rose-pine').setup({
 })
 
 require("tokyonight").setup({
-  transparent = true, -- Enable this to disable setting the background color
-  terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+  transparent = false, -- Enable this to disable setting the background color
+  terminal_colors = false, -- Configure the colors used when opening a `:terminal` in Neovim
   styles = {
     comments = { italic = false },
     keywords = { italic = false },
@@ -64,10 +64,9 @@ end;
   on_highlights = function(highlights, colors) end,
 })
 
-local status, _ = pcall(vim.cmd, "colorscheme tokyonight")
+local status, _ = pcall(vim.cmd, "colorscheme rose-pine")
 
 if not status then
     print("colorscheme not found!!")
     return
 end
-
