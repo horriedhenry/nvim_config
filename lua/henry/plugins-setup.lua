@@ -37,6 +37,9 @@ return packer.startup(function(use)
     use("rose-pine/neovim")
     use("folke/tokyonight.nvim")
     use("catppuccin/nvim")
+    -- use("ellisonleao/gruvbox.nvim")
+    -- use("morhetz/gruvbox")
+    use("ellisonleao/gruvbox.nvim")
 
     --undo tree
     use("mbbill/undotree")

@@ -12,7 +12,7 @@ lualine.setup({
       -- component_separators = { left = "|", right = "|" },
       -- theme = "seoul256", -- for kanagawa theme
       -- theme = "rose-pine"
-      -- theme = "catpuccin"
+      -- theme = "catppuccin"
       -- theme = "gruvbox-material", -- for gruvbox
       -- theme = "github_dark_dimmed", -- for gruvbox
       -- theme = "gruvbox", -- for gruvbox

@@ -39,16 +39,6 @@ lsp.set_preferences({
     }
 })
 
-local lspconfig = require("lspconfig")
-lspconfig.clangd.setup{
-    cmd = {
-        "clangd",
-        "--header-insertion=never",
-        "--query-driver=/usr/lib/llvm-14/bin/clang",
-        "--all-scopes-completion",
-        "--completion-style=detailed",
-    }
-}
 
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}

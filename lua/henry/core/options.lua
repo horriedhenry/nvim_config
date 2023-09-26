@@ -4,6 +4,13 @@ vim.g.noswapfile=true
 local opt = vim.opt
 
 
+-- Colorscheme
+vim.g.gruvbox_bold = 0
+vim.g.gruvbox_contrast_dark="medium" -- soft, hard , medium
+vim.g.gruvbox_improved_strings=0
+vim.g.gruvbox_guisp_fallback="bg"
+vim.g.gruvbox_improved_warnings=1
+
 --opt.guicursor=""
 opt.number=true
 opt.relativenumber=true
