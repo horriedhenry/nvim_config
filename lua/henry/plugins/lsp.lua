@@ -39,6 +39,18 @@ lsp.set_preferences({
     }
 })
 
+-- Disable snippetSupport form lsp server
+lsp.set_server_config({
+    capabilities = {
+        textDocument = {
+            completion = {
+                completionItem = {
+                    snippetSupport = false
+                },
+            },
+        },
+    },
+})
 
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
