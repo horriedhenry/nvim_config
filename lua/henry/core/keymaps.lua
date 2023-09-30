@@ -47,6 +47,7 @@ map.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>")
 
 --nvim-tree
 map.set("n", "<leader>e", vim.cmd.NvimTreeToggle) -- split window vertically
+map.set("n", "<leader>cs", vim.cmd.TSHighlightCapturesUnderCursor) -- split window vertically
 
 -- undo tree
 map.set("n", "<leader>u", vim.cmd.UndotreeToggle)

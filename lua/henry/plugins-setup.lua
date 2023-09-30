@@ -40,6 +40,7 @@ return packer.startup(function(use)
     -- use("ellisonleao/gruvbox.nvim")
     -- use("morhetz/gruvbox")
     use("ellisonleao/gruvbox.nvim")
+    use("sainnhe/sonokai")
 
     --undo tree
     use("mbbill/undotree")
@@ -84,6 +85,7 @@ return packer.startup(function(use)
           ts_update()
         end,
       })
+    use("nvim-treesitter/playground")
 
       -- auto closing
     use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
