@@ -11,15 +11,15 @@ map.set("v", "K", ":m '<-2<CR>gv=gv")
 --general keymap
 
 map.set("n", "<leader>nh", "<cmd>nohl<CR>")
-map.set("n", "x", '"_x') --cut but don't copy to register
+map.set("n", "x", '"_x')           --cut but don't copy to register
 
 map.set("n", "<leader>+", "<C-a>") --cut but don't copy to register
 map.set("n", "<leader>-", "<C-x>") --cut but don't copy to register
 
 --split window
-map.set("n", "<leader>sv", "<C-w>v") -- split window vertically
-map.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
-map.set("n", "<leader>se", "<C-w>=") -- split window vertically
+map.set("n", "<leader>sv", "<C-w>v")         -- split window vertically
+map.set("n", "<leader>sh", "<C-w>s")         -- split window horizontally
+map.set("n", "<leader>se", "<C-w>=")         -- split window vertically
 map.set("n", "<leader>sx", "<cmd>close<CR>") -- split window vertically
 
 --vertical movement (theprimeagen)
@@ -37,16 +37,16 @@ map.set("n", "<leader>q", ":q<CR>")
 map.set("n", "<leader>Q", ":q!<CR>")
 
 --manage tabs
-map.set("n", "<leader>to", "<cmd>tabnew<CR>") --open new tab
+map.set("n", "<leader>to", "<cmd>tabnew<CR>")   --open new tab
 map.set("n", "<leader>tx", "<cmd>tabclose<CR>") --close current tab
-map.set("n", "<leader>tn", "<cmd>tabn<CR>") --close current tab
-map.set("n", "<leader>tp", "<cmd>tabp<CR>") --close current tab
+map.set("n", "<leader>tn", "<cmd>tabn<CR>")     --close current tab
+map.set("n", "<leader>tp", "<cmd>tabp<CR>")     --close current tab
 
 -- plugin keymaps
 map.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>")
 
 --nvim-tree
-map.set("n", "<leader>e", vim.cmd.NvimTreeToggle) -- split window vertically
+map.set("n", "<leader>e", vim.cmd.NvimTreeToggle)                  -- split window vertically
 map.set("n", "<leader>cs", vim.cmd.TSHighlightCapturesUnderCursor) -- split window vertically
 
 -- undo tree
@@ -68,4 +68,3 @@ vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>")
 vim.keymap.set("n", "<C-f>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 -- Experiment
-

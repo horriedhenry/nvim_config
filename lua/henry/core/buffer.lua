@@ -5,7 +5,7 @@ local interval = 1 -- Update interval in milliseconds
 
 -- Function to update the buffer
 local function updateBuffer()
-  api.nvim_command('silent! checktime')
+    api.nvim_command('silent! checktime')
 end
 
 -- Set up the polling timer
@@ -16,9 +16,8 @@ api.nvim_command('autocmd VimEnter * lua startPolling()')
 
 -- Function to start the polling timer
 function StartPolling()
-  timer = uv.new_timer()
-  uv.timer_start(timer, interval, interval, function()
-    vim.schedule(updateBuffer)
-  end)
+    timer = uv.new_timer()
+    uv.timer_start(timer, interval, interval, function()
+        vim.schedule(updateBuffer)
+    end)
 end
-

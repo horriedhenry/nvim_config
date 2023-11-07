@@ -131,7 +131,7 @@ require("gruvbox").setup({
       -- bright_red = "#f4a261"
   },
   dim_inactive = false,
-  transparent_mode = false,
+  transparent_mode = true,
 })
 
 local status, _ = pcall(vim.cmd, "colorscheme gruvbox")
