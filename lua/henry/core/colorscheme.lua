@@ -138,7 +138,7 @@ require("gruvbox").setup({
     transparent_mode = true,
 })
 
-local status, _ = pcall(vim.cmd, "colorscheme gruvbox")
+local status, _ = pcall(vim.cmd, "colorscheme everforest")
 
 if not status then
     print("colorscheme not found!!")

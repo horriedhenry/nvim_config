@@ -41,6 +41,7 @@ return packer.startup(function(use)
     -- use("morhetz/gruvbox")
     use("ellisonleao/gruvbox.nvim")
     use("sainnhe/sonokai")
+    use("sainnhe/everforest")
 
     --undo tree
     use("mbbill/undotree")

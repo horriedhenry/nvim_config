@@ -11,6 +11,17 @@ vim.g.gruvbox_improved_strings = 0
 vim.g.gruvbox_guisp_fallback = "bg"
 vim.g.gruvbox_improved_warnings = 1
 
+
+-- Everforest
+vim.g.everforest_background = 'hard'
+-- vim.g.everforest_better_performance = 1
+vim.g.everforest_float_style = 'dim'
+-- vim.g.everforest_diagnostic_text_highlight = 1
+-- vim.g.everforest_diagnostic_virtual_text = 'colored'
+vim.g.everforest_disable_terminal_colors = 1
+vim.g.everforest_transparent_background = 0
+
+
 --opt.guicursor=""
 opt.number = true
 opt.relativenumber = true
