@@ -33,13 +33,12 @@ return packer.startup(function(use)
     use("nvim-lua/plenary.nvim")
 
     --color themes
-    use("rebelot/kanagawa.nvim")
+    use("sainnhe/gruvbox-material")
     use("rose-pine/neovim")
-    use("folke/tokyonight.nvim")
-    use("catppuccin/nvim")
     -- use("ellisonleao/gruvbox.nvim")
     -- use("morhetz/gruvbox")
-    use("ellisonleao/gruvbox.nvim")
+    -- use("ellisonleao/gruvbox.nvim")
+    use("horriedhenry/gruvbox")
     use("sainnhe/sonokai")
     use("sainnhe/everforest")
 
