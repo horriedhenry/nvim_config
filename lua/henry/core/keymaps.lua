@@ -67,4 +67,7 @@ vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>")
 -- find replace
 vim.keymap.set("n", "<C-f>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
+-- run r.sh
+vim.api.nvim_set_keymap('n', '<leader>r', [[:! bash r.sh <CR>]], { noremap = true, silent = true })
+
 -- Experiment
