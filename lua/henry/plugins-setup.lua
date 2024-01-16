@@ -131,6 +131,9 @@ return packer.startup(function(use)
     --   end
     -- }
 
+    -- Games
+    use("zyedidia/vim-snake")
+
     if packer_bootstrap then
         require("packer").sync()
     end

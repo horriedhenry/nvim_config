@@ -266,6 +266,11 @@ _G.packer_plugins = {
     path = "/home/henry/.local/share/nvim/site/pack/packer/start/vim-maximizer",
     url = "https://github.com/szw/vim-maximizer"
   },
+  ["vim-snake"] = {
+    loaded = true,
+    path = "/home/henry/.local/share/nvim/site/pack/packer/start/vim-snake",
+    url = "https://github.com/zyedidia/vim-snake"
+  },
   ["vim-surround"] = {
     loaded = true,
     path = "/home/henry/.local/share/nvim/site/pack/packer/start/vim-surround",

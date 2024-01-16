@@ -87,4 +87,8 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
 
+-- Games
+vim.g.snake_rows = 20
+vim.g.snake_cols = 50
+vim.g.snake_update = 125
 -- Experimental
