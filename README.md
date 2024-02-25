@@ -1,6 +1,7 @@
 # Nvim Config
 
 # tree
+```
 .
 ├── in
 ├── init.lua
@@ -28,3 +29,4 @@
 └── README.md
 
 6 directories, 19 files
+```
