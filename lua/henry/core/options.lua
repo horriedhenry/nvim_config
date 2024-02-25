@@ -91,4 +91,6 @@ vim.opt.cursorline = true
 vim.g.snake_rows = 20
 vim.g.snake_cols = 50
 vim.g.snake_update = 125
+
 -- Experimental
+vim.o.splitbelow = false
