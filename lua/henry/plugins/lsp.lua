@@ -2,6 +2,14 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
+lsp.setup_nvim_cmp({
+    -- Dont auto select first option from cmp snippets / lsp
+    preselect = 'none',
+    completion = {
+        completeopt = 'menu,menuone,noinsert,noselect'
+    },
+})
+
 lsp.ensure_installed({
     'clangd',
     'lua_ls',
@@ -12,23 +20,7 @@ lsp.ensure_installed({
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
 
-require'lspconfig'.tsserver.setup {}
-
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ["<C-Space>"] = cmp.mapping.complete(),
-})
-
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
+require 'lspconfig'.tsserver.setup {}
 
 lsp.set_preferences({
     suggest_lsp_servers = false,
@@ -121,6 +113,7 @@ local kind_icons = {
 
 cmp.setup {
     snippet = {
+        preselect = 'none',
         expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
         end
@@ -136,37 +129,6 @@ cmp.setup {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         },
-        -- Accept currently selected item. If none selected, `select` first item.
-        -- Set `select` to `false` to only confirm explicitly selected items.
-        -- ["<CR>"] = cmp.mapping.confirm { select = true },
-        -- ["<Tab>"] = cmp.mapping(function(fallback)
-        --   if cmp.visible() then
-        --     cmp.select_next_item()
-        --   elseif luasnip.expandable() then
-        --     luasnip.expand()
-        --   elseif luasnip.expand_or_jumpable() then
-        --     luasnip.expand_or_jump()
-        --   elseif check_backspace() then
-        --     fallback()
-        --   else
-        --     fallback()
-        --   end
-        -- end, {
-        --   "i",
-        --   "s",
-        -- }),
-        -- ["<S-Tab>"] = cmp.mapping(function(fallback)
-        --   if cmp.visible() then
-        --     cmp.select_prev_item()
-        --   elseif luasnip.jumpable(-1) then
-        --     luasnip.jump(-1)
-        --   else
-        --     fallback()
-        --   end
-        -- end, {
-        --   "i",
-        --   "s",
-        -- }),
     },
     formatting = {
         fields = { "kind", "abbr", "menu" },
