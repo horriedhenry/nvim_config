@@ -39,3 +39,9 @@ map.set("n", "<leader>b", "<cmd>Telescope buffers<cr>")               -- list op
 map.set("n", "<leader>H", "<cmd>Telescope help_tags<cr>")             -- list available help tags
 map.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>")          -- list available help tags
 map.set("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<cr>") -- list available help tags
+
+local builtin = require('telescope.builtin')
+map.set("n", '<leader>ps', function()
+	builtin.grep_string({ search = vim.fn.input("Grep > ") })
+end)
+map.set('n', '<leader>vh', builtin.help_tags, {})
