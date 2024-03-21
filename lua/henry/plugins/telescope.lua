@@ -19,8 +19,8 @@ telescope.setup({
         },
         mappings = {
             i = {
-                ["<C-k>"] = actions.move_selection_previous,               -- move to prev result
-                ["<C-j>"] = actions.move_selection_next,                   -- move to next result
+                ["<C-k>"] = actions.move_selection_previous,                       -- move to prev result
+                ["<C-j>"] = actions.move_selection_next,                           -- move to next result
                 ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
             },
         }
@@ -42,6 +42,6 @@ map.set("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<cr>") -- list av
 
 local builtin = require('telescope.builtin')
 map.set("n", '<leader>ps', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") })
+    builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 map.set('n', '<leader>vh', builtin.help_tags, {})
