@@ -42,7 +42,7 @@ opt.hlsearch = false
 opt.incsearch = true
 
 opt.shiftwidth = 4 -- 4 previously
-opt.tabstop = 4  -- 4 previously
+opt.tabstop = 4    -- 4 previously
 
 opt.smartindent = true
 opt.wrap = false
@@ -94,3 +94,4 @@ vim.g.snake_update = 125
 
 -- Experimental
 vim.o.splitbelow = false
+

@@ -14,8 +14,3 @@ require("henry.plugins.zenmode")
 require("henry.plugins.lsp")
 require("henry.core.colorscheme")
 
--- Enable transparent background
--- vim.cmd("hi Normal guibg=NONE ctermbg=NONE") -- apparently this 1 line is enough
--- vim.cmd("hi LineNr guibg=NONE ctermbg=NONE")
--- vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE")
--- vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
