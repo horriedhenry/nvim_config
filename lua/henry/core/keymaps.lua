@@ -4,6 +4,19 @@ vim.g.maplocalleader = " "
 
 local map = vim.keymap
 
+-- greatest remap ever,
+-- vim.keymap.set("x", "<leader>p", [["_dP]])
+
+-- next greatest remap ever : asbjornHaland
+
+vim.keymap.set({"n", "v"}, "Y", [["+y]])
+-- vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+vim.keymap.set({"n", "v"}, "<leader>d", [["_d]]) -- delte but do not copy to buffer
+
+vim.api.nvim_set_keymap("n", "<C-p>", '"+p', { noremap = true })
+vim.api.nvim_set_keymap("v", "<C-p>", '"+p', { noremap = true })
+
 -- move line above and below
 map.set("v", "J", ":m '>+1<CR>gv=gv")
 map.set("v", "K", ":m '<-2<CR>gv=gv")
