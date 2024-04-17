@@ -29,6 +29,15 @@ map.set("n", "x", '"_x')           --cut but don't copy to register
 map.set("n", "<leader>+", "<C-a>") --cut but don't copy to register
 map.set("n", "<leader>-", "<C-x>") --cut but don't copy to register
 
+-- YankHilight
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank({timeout=100})
+  end,
+})
+
 --split window
 map.set("n", "<leader>sv", "<C-w>v")         -- split window vertically
 map.set("n", "<leader>sh", "<C-w>s")         -- split window horizontally
