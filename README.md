@@ -1,7 +1,8 @@
 # Nvim Config
 
-# tree
-```
+# dir-tree
+
+```bash
 .
 ├── in
 ├── init.lua
