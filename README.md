@@ -1,10 +1,9 @@
 # Nvim Config
 
-# dir-tree
+# tree
 
 ```bash
 .
-├── in
 ├── init.lua
 ├── lua
 │   └── henry
@@ -29,5 +28,5 @@
 │   └── packer_compiled.lua
 └── README.md
 
-6 directories, 19 files
+6 directories, 18 files
 ```
