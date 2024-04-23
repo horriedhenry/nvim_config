@@ -4,29 +4,30 @@
 
 ```bash
 .
+├── after
+│   └── plugin
+│       ├── autopairs.lua
+│       ├── colorscheme.lua
+│       ├── comment.lua
+│       ├── fugutive.lua
+│       ├── gitsigns.lua
+│       ├── harpoon.lua
+│       ├── lsp.lua
+│       ├── lualine.lua
+│       ├── nvim-tree.lua
+│       ├── telescope.lua
+│       ├── treesitter.lua
+│       └── zenmode.lua
 ├── init.lua
 ├── lua
 │   └── henry
-│       ├── core
-│       │   ├── colorscheme.lua
-│       │   ├── harpoon.lua
-│       │   ├── keymaps.lua
-│       │   └── options.lua
-│       ├── plugins
-│       │   ├── autopairs.lua
-│       │   ├── comment.lua
-│       │   ├── fugutive.lua
-│       │   ├── gitsigns.lua
-│       │   ├── lsp.lua
-│       │   ├── lualine.lua
-│       │   ├── nvim-tree.lua
-│       │   ├── telescope.lua
-│       │   ├── treesitter.lua
-│       │   └── zenmode.lua
-│       └── plugins-setup.lua
+│       ├── init.lua
+│       ├── keymaps.lua
+│       ├── options.lua
+│       └── packer.lua
 ├── plugin
 │   └── packer_compiled.lua
 └── README.md
 
-6 directories, 18 files
+6 directories, 19 files
 ```
