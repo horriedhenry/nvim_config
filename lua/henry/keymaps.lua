@@ -83,9 +83,6 @@ vim.keymap.set("n", "<leader>m", function()
     vim.lsp.buf.format()
 end)
 
--- ZenMode
-vim.keymap.set("n", "<leader>Z", "<cmd>ZenMode<CR>")
-
 -- find replace
 vim.keymap.set("n", "<C-r>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
