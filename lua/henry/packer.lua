@@ -35,12 +35,7 @@ return packer.startup(function(use)
     --color themes
     use("sainnhe/gruvbox-material")
     use("rose-pine/neovim")
-    -- use("ellisonleao/gruvbox.nvim")
-    -- use("morhetz/gruvbox")
-    -- use("ellisonleao/gruvbox.nvim")
-    use("horriedhenry/gruvbox")
-    use("sainnhe/sonokai")
-    use("sainnhe/everforest")
+    use("catppuccin/nvim")
 
     --undo tree
     use("mbbill/undotree")
