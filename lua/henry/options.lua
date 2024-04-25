@@ -3,32 +3,6 @@ vim.opt.guicursor = ""
 vim.g.noswapfile = true
 local opt = vim.opt
 
-
--- Colorscheme
-vim.g.gruvbox_bold = 0
-vim.g.gruvbox_contrast_dark = "medium" -- soft, hard , medium
-vim.g.gruvbox_improved_strings = 0
-vim.g.gruvbox_guisp_fallback = "bg"
-vim.g.gruvbox_improved_warnings = 1
-
-vim.g.seoul256_background = 236
-
--- Everforest
-vim.g.everforest_background = 'hard'
--- vim.g.everforest_better_performance = 1
-vim.g.everforest_float_style = 'dim'
--- vim.g.everforest_diagnostic_text_highlight = 1
--- vim.g.everforest_diagnostic_virtual_text = 'colored'
-vim.g.everforest_disable_terminal_colors = 1
-vim.g.everforest_transparent_background = 0
-
--- Gruvbox Material
-vim.g.gruvbox_material_foreground = "original"
-vim.g.gruvbox_material_background = 'hard'
-vim.g.gruvbox_material_transparent_background = 0
-vim.g.gruvbox_material_float_style = "dim"
--- vim.g.gruvbox_material_disable_terminal_colors = 1
-
 --opt.guicursor=""
 opt.number = true
 opt.relativenumber = true
