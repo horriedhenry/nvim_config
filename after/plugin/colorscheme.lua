@@ -1,7 +1,7 @@
 vim.g.gruvbox_material_foreground = "original"
 vim.g.gruvbox_material_background = 'hard'
 vim.g.gruvbox_material_transparent_background = 0
-vim.g.gruvbox_material_float_style = "bright"
+vim.g.gruvbox_material_float_style = "dim"
 vim.g.gruvbox_material_menu_selection_background = "orange"
 vim.g.gruvbox_material_diagnostic_line_highlight = 1
 vim.g.gruvbox_material_diagnostic_text_highlight = 1
