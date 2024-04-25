@@ -34,8 +34,6 @@ return packer.startup(function(use)
 
     --color themes
     use("sainnhe/gruvbox-material")
-    use("rose-pine/neovim")
-    use("catppuccin/nvim")
 
     --undo tree
     use("mbbill/undotree")

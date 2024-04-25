@@ -1,49 +1,16 @@
-require('rose-pine').setup({
-    -- disable_italics = false,
-    disable_background = false,
-    disable_float_background = true,
-    --- @usage string hex value or named color from rosepinetheme.com/palette
-    groups = {
-        error = "love",
-        hint = "iris",
-        info = "foam",
-        note = "pine",
-        warn = "gold",
-
-        headings = {
-            h1 = 'iris',
-            h2 = 'foam',
-            h3 = 'rose',
-            h4 = 'gold',
-            h5 = 'pine',
-            h6 = 'foam',
-        },
-        -- or set all headings at once
-        -- headings = 'subtle'
-
-        -- git stuff
-        git_add = "foam",
-        git_change = "rose",
-        git_delete = "love",
-        git_dirty = "rose",
-        git_ignore = "muted",
-        git_merge = "iris",
-        git_rename = "pine",
-        git_stage = "iris",
-        git_text = "rose",
-        git_untracked = "subtle",
-    },
-    styles = {
-        bold = false;
-        italic = true;
-    },
-
-    -- Change specific vim highlight groups
-    -- https://github.com/rose-pine/neovim/wiki/Recipes
-    highlight_groups = {
-        TODO = { fg = "#FFFF00" }, -- Custom highlight for TODO keyword
-        -- TODO : word
-    }
-})
+vim.g.gruvbox_material_foreground = "original"
+vim.g.gruvbox_material_background = 'hard'
+vim.g.gruvbox_material_transparent_background = 0
+vim.g.gruvbox_material_float_style = "bright"
+vim.g.gruvbox_material_menu_selection_background = "orange"
+vim.g.gruvbox_material_diagnostic_line_highlight = 1
+vim.g.gruvbox_material_diagnostic_text_highlight = 1
+vim.g.gruvbox_material_enable_italic = 1
+vim.g.gruvbox_material_cursor = "orange"
+vim.g.gruvbox_material_sign_column_background = "grey"
+vim.g.gruvbox_material_spell_foreground = "colored"
+vim.g.gruvbox_material_ui_contrast = "high"
+vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
+vim.g.gruvbox_material_lightline_disable_bold = 0
 
 vim.cmd("colorscheme gruvbox-material")
