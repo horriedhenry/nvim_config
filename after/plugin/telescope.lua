@@ -14,9 +14,10 @@ end
 telescope.setup({
     -- configure custom mappings
     defaults = {
-        -- file_ignore_patterns = {
-        --     "git"
-        -- },
+        file_ignore_patterns = {
+            "venv",
+            "build"
+        },
         mappings = {
             i = {
                 ["<C-k>"] = actions.move_selection_previous, -- move to prev result

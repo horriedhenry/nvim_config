@@ -34,6 +34,8 @@ return packer.startup(function(use)
 
     --color themes
     use("sainnhe/gruvbox-material")
+    use("rebelot/kanagawa.nvim")
+    use("catppuccin/nvim")
 
     --undo tree
     use("mbbill/undotree")
@@ -87,6 +89,19 @@ return packer.startup(function(use)
     -- git integration
     use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
+    -- barbecue
+    use({
+        "utilyre/barbecue.nvim",
+        tag = "*",
+        requires = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+        config = function()
+            require("barbecue").setup()
+        end,
+    })
+
     -- LSP Zero
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -130,5 +145,4 @@ return packer.startup(function(use)
     if packer_bootstrap then
         require("packer").sync()
     end
-
 end)

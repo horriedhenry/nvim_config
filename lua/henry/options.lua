@@ -30,7 +30,7 @@ opt.smartcase = true
 -- appearance
 opt.termguicolors = true
 opt.background = "dark"
-opt.signcolumn = 'yes:6'
+opt.signcolumn = 'yes'
 
 -- backspace
 opt.backspace = "indent,eol,start"
