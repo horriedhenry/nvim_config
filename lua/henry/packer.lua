@@ -62,7 +62,8 @@ return packer.startup(function(use)
     use("numToStr/Comment.nvim")
 
     -- file explorer
-    use("nvim-tree/nvim-tree.lua")
+    -- use("nvim-tree/nvim-tree.lua")
+    use("stevearc/oil.nvim")
     use("nvim-tree/nvim-web-devicons")
 
     -- status line
