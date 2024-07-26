@@ -36,6 +36,7 @@ return packer.startup(function(use)
     use("sainnhe/gruvbox-material")
     use("rebelot/kanagawa.nvim")
     use("catppuccin/nvim")
+    use("cdmill/neomodern.nvim")
 
     --undo tree
     use("mbbill/undotree")

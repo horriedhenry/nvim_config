@@ -30,7 +30,7 @@ treesitter.setup({
         },
     },
     -- enable indentation
-    indent = { enable = true, disable = { "html", "css" } }, -- if disabled indentation works fine in python
+    indent = { enable = false, disable = { "html", "css" } }, -- if disabled indentation works fine in python
     -- apparently set enable to true to get proper indentation in python
     -- did not notice any weird indentation in html or css with the above indent values
 
