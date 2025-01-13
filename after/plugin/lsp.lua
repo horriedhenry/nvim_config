@@ -20,7 +20,7 @@ lsp.ensure_installed({
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
 
-require 'lspconfig'.tsserver.setup {}
+require 'lspconfig'.ts_ls.setup {}
 
 lsp.set_preferences({
     suggest_lsp_servers = false,

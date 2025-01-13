@@ -34,6 +34,12 @@ return packer.startup(function(use)
 
     --color themes
     use("sainnhe/gruvbox-material")
+    use("sainnhe/edge")
+    use("d00h/nvim-rusticated")
+    use("Shatur/neovim-ayu")
+    use("rose-pine/neovim")
+    use("folke/tokyonight.nvim")
+    use("ellisonleao/gruvbox.nvim")
     use("rebelot/kanagawa.nvim")
     use("catppuccin/nvim")
     use("cdmill/neomodern.nvim")
