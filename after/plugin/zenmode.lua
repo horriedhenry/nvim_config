@@ -65,7 +65,9 @@ require("zen-mode").setup {
     },
 }
 
+-- Toggle Zen Mode with <leader>Z
 vim.keymap.set("n", "<leader>Z", function()
     require("zen-mode").toggle()
-    vim.wo.wrap = false
+    vim.g.zen_mode = not vim.g.zen_mode  -- Toggle Zen Mode status
+    vim.wo.wrap = false  -- Disable text wrapping in Zen Mode
 end)
