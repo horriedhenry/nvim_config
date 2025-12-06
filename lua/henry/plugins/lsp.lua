@@ -1,93 +1,146 @@
+-- new neovim version broke my old config
+-- everthing is scattered, pyright and clangd are working fine, lua_ls is not working(tried a lot)
+-- i still don't know how lsp works, i used chatgpt to solve every issue
+
 return {
+    -- Mason package manager
     {
-        "mason-org/mason.nvim",
+        "williamboman/mason.nvim",
         build = ":MasonUpdate",
         config = function()
-            require("mason").setup()
+            require("mason").setup({ PATH = "append" })
         end,
     },
+
+    -- Mason LSP integration
     {
-        "mason-org/mason-lspconfig.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "neovim/nvim-lspconfig" },
         config = function()
             require("mason-lspconfig").setup({
-                automatic_enable = false,
+                automatic_installation = true,
+                ensure_installed = { "pyright", "clangd" },
             })
         end,
     },
+
+    -- Neovim LSP (modern API)
     {
         "neovim/nvim-lspconfig",
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-        },
+        dependencies = { "hrsh7th/cmp-nvim-lsp" },
         config = function()
-            local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            -- Reusable on_attach for all servers
-            local on_attach = function(client, bufnr)
-                local opts = { buffer = bufnr, remap = false }
-
-
-                -- Hover with border (use with transparent background)
-                vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-                    vim.lsp.handlers.hover,
-                    { border = "single" }
-                )
-                vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-                vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none", fg = "#a89984" })
-
-                -- Signature help with border and non-blocking
-                vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-                    vim.lsp.handlers.signature_help,
-                    {
-                        border = "single",
-                        -- close_events = { "CursorMoved", "InsertLeave", "BufHidden" },
-                        focusable = false,
-                    }
-                )
-
-                -- Keymaps
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
-                vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, opts)
-                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-                vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-                vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-                vim.keymap.set("n", "<leader>h", vim.lsp.buf.signature_help, opts)
-                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-                vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, opts)
-                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-            end
-
-            -- Lua LS
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
+            ---------------------------------------------------------------------
+            -- Diagnostic configuration
+            ---------------------------------------------------------------------
+            vim.diagnostic.config({
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = " ",
+                        [vim.diagnostic.severity.WARN]  = " ",
+                        [vim.diagnostic.severity.HINT]  = " ",
+                        [vim.diagnostic.severity.INFO]  = " ",
                     },
+                },
+                virtual_text = { prefix = "●", spacing = 2, source = "if_many" },
+                underline = true,
+                update_in_insert = false,
+                severity_sort = true,
+                float = {
+                    border = "single",
+                    focusable = false,
+                    source = "always",
+                    header = "",
+                    scope = "line",
                 },
             })
 
-            -- Clangd
-            lspconfig.clangd.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
+            -- Float styling
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+            vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none", fg = "#a89984" })
+
+            ---------------------------------------------------------------------
+            -- LSP attach: bordered hover + on-demand diagnostic float
+            ---------------------------------------------------------------------
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(args)
+                    local bufnr = args.buf
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    local enc = (client and client.offset_encoding) or "utf-16"
+
+                    -- Bordered hover (independent of other plugins)
+                    local function bordered_hover()
+                        local params = vim.lsp.util.make_position_params(0, enc)
+                        vim.lsp.buf_request(0, "textDocument/hover", params, function(err, result)
+                            if err or not result or not result.contents then return end
+                            local lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+                            local cleaned = {}
+                            for _, line in ipairs(lines) do
+                                if line:match("%S") then table.insert(cleaned, line) end
+                            end
+                            if vim.tbl_isempty(cleaned) then return end
+                            local _, win = vim.lsp.util.open_floating_preview(cleaned, "markdown", { border = "single" })
+                            vim.api.nvim_create_autocmd({ "CursorMoved", "BufHidden", "InsertEnter", "FocusLost" }, {
+                                once = true,
+                                callback = function()
+                                    if win and vim.api.nvim_win_is_valid(win) then pcall(vim.api.nvim_win_close, win, true) end
+                                end,
+                            })
+                        end)
+                    end
+
+                    local opts = { buffer = bufnr, remap = false, nowait = true }
+                    local keymap = vim.keymap.set
+
+                    -- Hover (bordered)
+                    keymap("n", "K", bordered_hover, opts)
+
+                    -- On-demand diagnostic float (bordered) with <C-k>
+                    keymap("n", "<C-k>", function()
+                        vim.diagnostic.open_float(nil, {
+                            border = "single",
+                            focusable = false,
+                            source = "always",
+                            header = "",
+                            scope = "line",
+                            close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                        })
+                    end, opts)
+
+                    -- Your other LSP keymaps
+                    keymap("n", "gd", vim.lsp.buf.definition, opts)
+                    keymap("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+                    keymap("n", "<leader>df", vim.diagnostic.open_float, opts)
+                    keymap("n", "gi", vim.lsp.buf.implementation, opts)
+                    keymap("n", "[d", vim.diagnostic.goto_next, opts)
+                    keymap("n", "]d", vim.diagnostic.goto_prev, opts)
+                    keymap("n", "<leader>h", vim.lsp.buf.signature_help, opts)
+                    keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+                    keymap("n", "<leader>rr", vim.lsp.buf.references, opts)
+                    keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+                    keymap("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+                end,
             })
 
-            -- Add other LSPs here like:
-            lspconfig.pyright.setup({
-                capabilities = capabilities,
-                on_attach = on_attach
-            })
+            ---------------------------------------------------------------------
+            -- Servers
+            ---------------------------------------------------------------------
+            local servers = {
+                clangd = { capabilities = capabilities },
+                pyright = { capabilities = capabilities },
+            }
+
+            local enable_list = {}
+            for name, opts in pairs(servers) do
+                vim.lsp.config(name, opts)
+                table.insert(enable_list, name)
+            end
+            vim.lsp.enable(enable_list)
         end,
     },
-    -- ✨ Black formatter integration using none-ls
+
+    -- none-ls (successor of null-ls)
     {
         "nvimtools/none-ls.nvim",
         dependencies = {
@@ -96,33 +149,14 @@ return {
         },
         config = function()
             local null_ls = require("null-ls")
-
             require("mason-null-ls").setup({
                 ensure_installed = { "black" },
                 automatic_installation = true,
             })
-
             null_ls.setup({
                 sources = {
                     null_ls.builtins.formatting.black,
-                    -- null_ls.builtins.formatting.clang_format.with({
-                    --     filetypes = { "c", "cpp", "objc", "objcpp" },
-                    --     args = {
-                    --         "-style={BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 80, UseTab: Never, AllowShortFunctionsOnASingleLine: Empty}"
-                    --     },
-                    -- }),
                 },
-                -- Format on save
-                -- on_attach = function(client, bufnr)
-                --     if client.supports_method("textDocument/formatting") then
-                --         vim.api.nvim_create_autocmd("BufWritePre", {
-                --             buffer = bufnr,
-                --             callback = function()
-                --                 vim.lsp.buf.format({ bufnr = bufnr })
-                --             end,
-                --         })
-                --     end
-                -- end,
             })
         end,
     },
