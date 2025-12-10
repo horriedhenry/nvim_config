@@ -3,7 +3,9 @@
 -- i still don't know how lsp works, i used chatgpt to solve every issue
 
 return {
+    ---------------------------------------------------------------------------
     -- Mason package manager
+    ---------------------------------------------------------------------------
     {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
@@ -12,27 +14,45 @@ return {
         end,
     },
 
-    -- Mason LSP integration
+    ---------------------------------------------------------------------------
+    -- Mason LSP integration (install servers only; no setup handlers)
+    ---------------------------------------------------------------------------
     {
         "williamboman/mason-lspconfig.nvim",
-        dependencies = { "neovim/nvim-lspconfig" },
         config = function()
             require("mason-lspconfig").setup({
                 automatic_installation = true,
-                ensure_installed = { "pyright", "clangd" },
+                ensure_installed = { "pyright", "clangd", "lua_ls" },
             })
         end,
     },
 
-    -- Neovim LSP (modern API)
+    ---------------------------------------------------------------------------
+    -- Better Lua/Neovim typings (trimmed so lua_ls starts faster)
+    ---------------------------------------------------------------------------
     {
-        "neovim/nvim-lspconfig",
-        dependencies = { "hrsh7th/cmp-nvim-lsp" },
+        "folke/neodev.nvim",
+        opts = {
+            -- Provide Neovim runtime/types, but don't auto-add every plugin path
+            library = { enabled = true, runtime = true, types = true, plugins = false },
+            pathStrict = true,
+        },
+    },
+
+    ---------------------------------------------------------------------------
+    -- Core LSP setup (Neovim 0.11+ API)
+    ---------------------------------------------------------------------------
+    {
+        "neovim/nvim-lspconfig", -- kept for extra schemas/snippets; not used for setup()
+        dependencies = { "hrsh7th/cmp-nvim-lsp", "folke/neodev.nvim" },
         config = function()
+            -- Initialize neodev (if present) before lua_ls
+            pcall(require, "neodev")
+
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
             ---------------------------------------------------------------------
-            -- Diagnostic configuration
+            -- Diagnostics (inline, no auto float)
             ---------------------------------------------------------------------
             vim.diagnostic.config({
                 signs = {
@@ -69,7 +89,7 @@ return {
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
                     local enc = (client and client.offset_encoding) or "utf-16"
 
-                    -- Bordered hover (independent of other plugins)
+                    -- Bordered hover (manual)
                     local function bordered_hover()
                         local params = vim.lsp.util.make_position_params(0, enc)
                         vim.lsp.buf_request(0, "textDocument/hover", params, function(err, result)
@@ -93,10 +113,7 @@ return {
                     local opts = { buffer = bufnr, remap = false, nowait = true }
                     local keymap = vim.keymap.set
 
-                    -- Hover (bordered)
                     keymap("n", "K", bordered_hover, opts)
-
-                    -- On-demand diagnostic float (bordered) with <C-k>
                     keymap("n", "<C-k>", function()
                         vim.diagnostic.open_float(nil, {
                             border = "single",
@@ -108,7 +125,6 @@ return {
                         })
                     end, opts)
 
-                    -- Your other LSP keymaps
                     keymap("n", "gd", vim.lsp.buf.definition, opts)
                     keymap("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
                     keymap("n", "<leader>df", vim.diagnostic.open_float, opts)
@@ -124,13 +140,49 @@ return {
             })
 
             ---------------------------------------------------------------------
-            -- Servers
+            -- Servers (new API)
             ---------------------------------------------------------------------
+            local mason_bin = vim.fn.stdpath("data") .. "/mason/bin/"
+
             local servers = {
-                clangd = { capabilities = capabilities },
-                pyright = { capabilities = capabilities },
+                clangd = {
+                    capabilities = capabilities,
+                    cmd = { "clangd" }, -- rely on PATH
+                },
+                pyright = {
+                    capabilities = capabilities,
+                    cmd = { "pyright-langserver", "--stdio" },
+                },
+                lua_ls = {
+                    capabilities = capabilities,
+                    -- Pin to Mason's shim to avoid PATH clashes
+                    cmd = { mason_bin .. "lua-language-server" },
+                    settings = {
+                        Lua = {
+                            runtime = { version = "LuaJIT" },
+                            diagnostics = { globals = { "vim" } },
+
+                            -- ⚡ Faster startup: keep library empty; neodev injects needed types.
+                            workspace = {
+                                checkThirdParty = false,
+                                library = {},          -- don't enumerate tons of paths
+                                maxPreload = 300,      -- lower = less upfront indexing
+                                preloadFileSize = 200, -- KB; skip huge files during preload
+                            },
+
+                            completion = {
+                                workspaceWord = false, -- small perf win
+                                callSnippet = "Replace",
+                            },
+
+                            hint = { enable = true },
+                            telemetry = { enable = false },
+                        },
+                    },
+                },
             }
 
+            -- Register + enable
             local enable_list = {}
             for name, opts in pairs(servers) do
                 vim.lsp.config(name, opts)
@@ -140,7 +192,9 @@ return {
         end,
     },
 
+    ---------------------------------------------------------------------------
     -- none-ls (successor of null-ls)
+    ---------------------------------------------------------------------------
     {
         "nvimtools/none-ls.nvim",
         dependencies = {
