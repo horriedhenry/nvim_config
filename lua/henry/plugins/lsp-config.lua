@@ -15,12 +15,11 @@ return {
 		end,
 	},
 	{
-        -- TODO : Fix This
-        -- [ERROR][2025-12-11 02:17:31] ...lsp/handlers.lua:562	'File or directory "/<default workspace root>" does not exist.'
+		-- TODO : Fix This
+		-- [ERROR][2025-12-11 02:17:31] ...lsp/handlers.lua:562	'File or directory "/<default workspace root>" does not exist.'
 		"neovim/nvim-lspconfig",
 
 		config = function()
-
 			---------------------------------------------------------------------------
 			-- Diagnostics (inline, no auto float) (CUSTOM - CHATGPT)
 			---------------------------------------------------------------------------
@@ -93,7 +92,7 @@ return {
 					local keymap = vim.keymap.set
 
 					keymap("n", "K", bordered_hover, opts)
-					keymap("n", "<C-k>", function()
+					keymap("n", "<C-i>", function()
 						vim.diagnostic.open_float(nil, {
 							border = "single",
 							focusable = false,
@@ -104,7 +103,7 @@ return {
 						})
 					end, opts)
 
-                    -- these are older bindings
+					-- these are older bindings
 					keymap("n", "gd", vim.lsp.buf.definition, opts)
 					keymap("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 					keymap("n", "<leader>df", vim.diagnostic.open_float, opts)
@@ -120,7 +119,7 @@ return {
 			})
 		end,
 
-        -- ❤️ https://www.reddit.com/r/neovim/comments/1nmh99k/beware_the_old_nvimlspconfig_setup_api_is/
+		-- ❤️ https://www.reddit.com/r/neovim/comments/1nmh99k/beware_the_old_nvimlspconfig_setup_api_is/
 		vim.lsp.config("lua_ls", {
 			settings = {
 				Lua = {
@@ -133,6 +132,7 @@ return {
 		vim.lsp.enable({ "lua_ls" }),
 		vim.lsp.enable({ "pyright" }),
 		vim.lsp.enable({ "clangd" }),
+		vim.lsp.enable({ "django_template_lsp" }),
 	},
 	{
 		"nvimtools/none-ls.nvim",
@@ -143,13 +143,15 @@ return {
 		config = function()
 			local null_ls = require("null-ls")
 			require("mason-null-ls").setup({
-				ensure_installed = { "black", "stylua" },
+				ensure_installed = { "black", "stylua", "prettier" },
 				automatic_installation = true,
 			})
 			null_ls.setup({
 				sources = {
 					null_ls.builtins.formatting.black,
 					null_ls.builtins.formatting.stylua,
+					null_ls.builtins.formatting.prettier,
+					null_ls.builtins.formatting.djlint,
 					-- null_ls.builtins.formatting.clang_format.with({
 					--     filetypes = { "c", "cpp", "objc", "objcpp" },
 					--     args = {
